@@ -1,17 +1,12 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        String[][] board = BoardBuilder.boardBuilder();
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                System.out.print(board[i][j] + " ");
-            }
-            System.out.print("\n");
-        }
+        String[][] board = Board.boardBuilder();
+
+        Prints.printBoard(board);
 
         System.out.println("ship placement: ");
 
@@ -21,15 +16,14 @@ public class Main {
         int placementRow = buffer[0];
         int placementColumn = buffer[1];
 
-       ShipsBuilder.TwoByTwoShip(board,placementRow,placementColumn);
+        ShipsBuilder.TwoByTwoShip(board, placementRow, placementColumn);
+        Prints.printBoard(board);
 
+        System.out.println("pick place to aim");
+        Attack attack = new Attack();
+        boolean hit = attack.isHit(board, attack.attackCords(scanner.nextLine()));
+        Prints.hit(hit);
 
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                System.out.print(board[i][j] + " ");
-            }
-            System.out.print("\n");
-        }
         scanner.close();
     }
 }

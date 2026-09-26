@@ -1,4 +1,4 @@
-public class BoardBuilder {
+public class Board {
     public static String[][] boardBuilder() {
         String[][] board = new String[10][10];
         char row = 'A';
