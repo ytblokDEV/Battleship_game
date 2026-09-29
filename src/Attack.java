@@ -21,10 +21,26 @@ public class Attack {
     }
 
     public boolean isHit(String[][] board, int[] cords) {
-        boolean HitStatus;
-        HitStatus = board[cords[0]][cords[1]].equals("X");
-        board[cords[0]][cords[1]] = "O";
+        return board[cords[0]][cords[1]].equals("X");
+    }
 
-        return HitStatus;
+    public boolean isDestroyed(String[][] board, int[] cords) {
+        int startRow = Math.max(0, cords[0] - 1);
+        int endRow = Math.min(9, cords[0] + 1);
+        int startCol = Math.max(0, cords[1] - 1);
+        int endCol = Math.min(9, cords[1] + 1);
+        boolean isSunk = true;
+
+        for (int r = startRow; r <= endRow; r++){
+            for (int c = startCol; c <= endCol; c++) {
+                if ("X".equals(board[r][c])) {
+                    isSunk = false;
+                    break;
+                }
+            }
+            if (!isSunk) break;
+        }
+
+            return isSunk;
     }
 }
